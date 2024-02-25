@@ -48,7 +48,7 @@ body {
 }
 
 .dividir {
-    width: 80px;
+    width: 288px;
     height: 1px;
     margin-bottom: 24px;
     background-color: rgba(219, 217, 232, .2);
@@ -83,31 +83,58 @@ ul {
 .home-lista-item{
     display: block;
     overflow: visible;
-    -webkit-transition: -webkit-transform 400ms ease;
-    transition: -webkit-transform 400ms ease;
-    transition: transform 400ms ease;
-    transition: transform 400ms ease, -webkit-transform 400ms ease;
 }
 
 .home-lista-link {
     display: inline-block;
     padding: 16px;
-    -webkit-transition: color 400ms ease, -webkit-transform 400ms ease;
-    transition: color 400ms ease, -webkit-transform 400ms ease;
-    transition: color 400ms ease, transform 400ms ease;
-    transition: color 400ms ease, transform 400ms ease, -webkit-transform 400ms ease;
     color: #dbd9e8;
     font-size: 15px;
     font-weight: 300;
     letter-spacing: 1px;
 }
 
+.home-button{
+    display: inline-block;
+    padding: 16px;
+    color: #dbd9e8;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    background-color: black; 
+    border: black;
+}
+
 a {
-    /* color: #cc2d42; */
     text-decoration: none;
 }
 a {
     background-color: transparent;
+}
+
+p {
+    display: inline-block;
+    padding: 16px;
+    color: #28FF0D;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+h2 {
+    color: #28FF0D;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+label {
+    display: inline-block;
+    padding: 16px;
+    color: #dbd9e8;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
 .sociais {
