@@ -5,49 +5,85 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Otaviano</title>
-    <link rel="icon" type="image/png" href="icoja.png">
+    <link rel="icon" type="image/png" href="imagens/icoja.png">
     <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
     <div class="conteiner">
         <div class="home-conteiner">
-            <img src="0T4V14N0.jpg" width="161" class="logo" alt="logo">
+            <img src="imagens/otaviano.png" width="300" class="logo" alt="logo">
     
             <div class="dividir"></div>
 
             <ul class="home-lista">
                 <li class="home-lista-item">
-                    <a href="" class="home-lista-link">HOME</a>
+                    <button class="home-button" onclick="showContent('homeContent')">HOME</button>
                 </li>
                 <li class="home-lista-item">
-                    <a href="" class="home-lista-link">ABOUT</a>
+                    <button class="home-button" onclick="showContent('aboutContent')">ABOUT</button>
                 </li>
                 <li class="home-lista-item">
-                    <a href="" class="home-lista-link">SKILLS</a>
+                    <button class="home-button" onclick="showContent('skillsContent')">SKILLS</button>
                 </li>
                 <li class="home-lista-item">
-                    <a href="" class="home-lista-link">PROJECTS</a>
+                    <button class="home-button" onclick="showContent('projectsContent')">PROJECTS</button>
                 </li>
             </ul>            
             <div class="sociais">
                 <a href="https://instagram.com/otavianogouveia" class="social-butao w-inline-block">
-                    <img src="iconesredes/instagram.svg" alt="instagram">
+                    <img src="iconesredes/Instagram.svg" alt="instagram">
                 </a>
                 <a href="https://twitter.com/0t4v14n0" class="social-butao">
-                    <img src="iconesredes/Twitter.svg" alt="instagram">
+                    <img src="iconesredes/Twitter.svg" alt="twitter">
                 </a>
                 <a href="https://github.com/0t4v14n0" class="social-butao">
-                    <img src="iconesredes/git.svg" alt="instagram">
+                    <img src="iconesredes/git.svg" alt="github">
                 </a>
                 <a href="https://www.linkedin.com/in/otaviano-cruz/" class="social-butao">
-                    <img src="iconesredes/linke.svg" alt="instagram">
+                    <img src="iconesredes/linke.svg" alt="linkedin">
                 </a>
             </div>
         </div>
 
-        <img src="codehome.png" width="300" height="300" alt="sua imagem">
-    </div>
-  </body>
+        <div class="content" id="homeContent">
+            <img src="imagens/codehome.png" width="400" height="400" alt="HOME">
+        </div>
 
+        <div class="content" id="aboutContent" style="display: none;">
+            <!-- Conteúdo da About -->
+            <h2>ABOUT ME</h2>
+            <p>Hello, I'm Otaviano Cruz, a 23-year-old programming enthusiast. I believe that in the <br> 
+                field of technology, it's essential to have diversified knowledge, which is why I <br>
+                consider myself a full-stack developer, with a specialized focus on the backend.<br> 
+                I'm always eager to learn and enhance my skills to create robust and efficient solutions.<br>
+                 Welcome to my digital world, where I share my experiences and projects in this fascinating<br>
+                  programming universe.</p>
+        </div>
+
+        <div class="content" id="skillsContent" style="display: none;">
+            <!-- Conteúdo das Skills -->
+            <div class="" style="margin: 50px;width: 500px;border: 1px solid black;padding: 10px;">
+                <label>HTML/CSS</label>
+                <div style="width: 100%;background-color: #ddd;"><div style="text-align: right;padding-top: 10px;padding-bottom: 10px;color: black;width:50%; background-color: #28FF0D;">50%</div></div>
+                <label>JAVASCRIPT</label>
+                <div style="width: 100%;background-color: #ddd;"><div style="text-align: right;padding-top: 10px;padding-bottom: 10px;color: black;width:80%; background-color: #28FF0D;">80%</div></div>
+                <label>PYTHON</label>
+                <div style="width: 100%;background-color: #ddd;"><div style="text-align: right;padding-top: 10px;padding-bottom: 10px;color: black;width:65%;background-color: #28FF0D;">65%</div></div>
+                <label>JAVA</label>
+                <div style="width: 100%;background-color: #ddd;"><div style="text-align: right;padding-top: 10px;padding-bottom: 10px;color: black;width:50%; background-color: #28FF0D;"> 50%</div></div>
+            </div>
+        </div>
+
+        <div class="content" id="projectsContent" style="display: none;">
+            <!-- Conteúdo dos Projects -->
+            <h2>Meus projetos</h2>
+            <p>Aqui estão meus projetos...</p>
+        </div>
+
+    </div>
+    
+    <script src="script.js" defer></script>
+
+  </body>
 </html>
