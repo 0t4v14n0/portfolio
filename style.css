@@ -169,3 +169,14 @@ label {
     -webkit-transition: opacity 400ms ease;
     transition: opacity 400ms ease;
 }
+
+.conteudo{
+
+}
+
+.logo-projetos{
+    margin-top: 40px;
+    margin-left: -13px;
+    width: 100px;
+    height: 100px;
+}
