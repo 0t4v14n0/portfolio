@@ -3,7 +3,12 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-user agent stylesheet
+:root{
+    --cor-p: #000000;
+    --cor-s: #28FF0D;
+    --cor-t: #dbd9e8;
+}
+
 head {
     display: none;
 }
@@ -14,7 +19,7 @@ html {
 }
 body {
     min-height: 100vh;
-    background-color: black;
+    background-color: var(--cor-p);
     font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
     color: #333;
     font-size: 14px;
@@ -51,7 +56,7 @@ body {
     width: 288px;
     height: 1px;
     margin-bottom: 24px;
-    background-color: rgba(219, 217, 232, .2);
+    background-color: var(--cor-p);
 }
 
 .logo{
@@ -88,7 +93,7 @@ ul {
 .home-lista-link {
     display: inline-block;
     padding: 16px;
-    color: #dbd9e8;
+    color: var(--cor-t);
     font-size: 15px;
     font-weight: 300;
     letter-spacing: 1px;
@@ -97,7 +102,7 @@ ul {
 .home-button{
     display: inline-block;
     padding: 16px;
-    color: #dbd9e8;
+    color: var(--cor-t);
     font-size: 20px;
     font-weight: 300;
     letter-spacing: 1px;
@@ -115,14 +120,14 @@ a {
 p {
     display: inline-block;
     padding: 16px;
-    color: #28FF0D;
+    color: var(--cor-s);
     font-size: 15px;
     font-weight: 300;
     letter-spacing: 1px;
 }
 
 h2 {
-    color: #28FF0D;
+    color: var(--cor-s);
     font-size: 15px;
     font-weight: 300;
     letter-spacing: 1px;
@@ -131,7 +136,7 @@ h2 {
 label {
     display: inline-block;
     padding: 16px;
-    color: #dbd9e8;
+    color: var(--cor-t);
     font-size: 15px;
     font-weight: 300;
     letter-spacing: 1px;
@@ -168,10 +173,6 @@ label {
     opacity: 0.3;
     -webkit-transition: opacity 400ms ease;
     transition: opacity 400ms ease;
-}
-
-.conteudo{
-
 }
 
 .logo-projetos{
