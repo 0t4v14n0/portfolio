@@ -15,13 +15,12 @@ head {
 body {
     min-height: 100vh;
     background-color: var(--cor-p);
-    color: #333;
     font-size: 0.875rem;
     line-height: 1.25rem;
 }
 
 .conteiner {
-    background-position: 5.688rem 40%;
+    background-position: 5.688rem 60%;
     position: block;
     top: 0px;
     right: 0%;
@@ -32,13 +31,7 @@ body {
     max-width: 75rem;
     margin-right: auto;
     margin-left: auto;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
     align-items: center;
 }
 
@@ -56,7 +49,6 @@ body {
 
 img {
     max-width: 100%;
-    vertical-align:auto;
     display: flex;
 }
 
@@ -106,7 +98,7 @@ ul {
 
 .segunda-tela{
     background-position: 5.688rem 40%;
-    position: block;
+    position: flex;
     top: 0px;
     right: 0%;
     bottom: 0px;
@@ -115,19 +107,14 @@ ul {
     height: 100vh;
     max-width: 75rem;
     margin-right: auto;
-    margin-left: auto;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
+    margin-left: 0;
     justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
     align-items: center;
 }
 
 .content {
     display: flex;
+    width: 100%;
 }
 
 a {
@@ -150,6 +137,12 @@ p {
 h2 {
     color: var(--cor-s);
     font-size: 0.938rem;
+    font-weight: 300;
+    letter-spacing: 0.063rem;
+}
+
+h1 {
+    color: var(--cor-s);
     font-weight: 300;
     letter-spacing: 0.063rem;
 }
@@ -180,12 +173,9 @@ label {
 
 .grafico{
     min-height: 30%;
-    margin-right: 30%;
     display: inline-block;
-    align-items: center;
-    right: 10%;
-    margin: 10%;
-    width: 350%;
+    margin: 1%;
+    width: 100%;
     border: 1% var(--cor-p);
     padding: 10%;
 }
@@ -209,6 +199,6 @@ label {
     display: inline-block;
     align-items: center;
     border: 1px;
-    width: 100px;
-    height: 100px;
+    width: 20%;
+    height: 20%;
 }
