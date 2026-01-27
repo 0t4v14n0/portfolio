@@ -13,7 +13,38 @@
             margin: 0 auto;
             padding: 40px;
             background-color: #fff;
+            position: relative; /* Para posicionar o botão */
         }
+        
+        /* Botão de Idioma */
+        .language-switch {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+        }
+        .btn-lang {
+            padding: 5px 15px;
+            cursor: pointer;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+        .btn-lang:hover {
+            background-color: #1a252f;
+        }
+
+        /* Classes para controle de idioma */
+        .lang-en {
+            display: none; /* Inglês começa escondido */
+        }
+        .lang-pt {
+            display: block;
+        }
+
         h1 {
             text-align: center;
             text-transform: uppercase;
@@ -81,100 +112,196 @@
         @media print {
             body { padding: 0; }
             a { text-decoration: none; color: #000; }
+            .language-switch { display: none; } /* Esconde o botão na impressão */
         }
     </style>
 </head>
 <body>
 
+    <div class="language-switch">
+        <button class="btn-lang" onclick="toggleLanguage()">EN / PT</button>
+    </div>
+
     <h1>OTAVIANO CRUZ GOUVEIA DE ARRUDA NETO</h1>
-    <div class="subtitle">Desenvolvedor Fullstack | Java, Spring Boot & React</div>
+    
+    <div class="subtitle">
+        <span class="lang-pt">Desenvolvedor Fullstack | Java, Spring Boot & React</span>
+        <span class="lang-en">Fullstack Developer | Java, Spring Boot & React</span>
+    </div>
     
     <div class="contact-info">
-        Belo Jardim, PE | (81) 99333-5045<br>
+        <span class="lang-pt">Belo Jardim, PE | (81) 99333-5045</span>
+        <span class="lang-en">Belo Jardim, PE, Brazil | +55 (81) 99333-5045</span>
+        <br>
         <a href="mailto:0t4v14n0@gmail.com">0t4v14n0@gmail.com</a> | 
         <a href="https://www.linkedin.com/in/otaviano-cruz/" target="_blank">LinkedIn</a> | 
         <a href="https://www.otaviano.dev.br/" target="_blank">Portfólio & GitHub</a>
     </div>
 
-    <h3>Resumo Profissional</h3>
+    <h3>
+        <span class="lang-pt">Resumo Profissional</span>
+        <span class="lang-en">Professional Summary</span>
+    </h3>
     <div class="section-content">
-        <p>Desenvolvedor Fullstack com 5 anos de atuação prática em todas as fases do ciclo de desenvolvimento de software. Proficiente na construção de soluções escaláveis utilizando <strong>Java (Spring Boot)</strong> no backend e <strong>React</strong> no frontend. Experiência sólida em arquitetura de microsserviços, modelagem de dados (SQL) e infraestrutura em nuvem (<strong>AWS/Docker</strong>). Focado em código limpo, performance e entrega de valor em ambientes ágeis.</p>
+        <p class="lang-pt">Desenvolvedor Fullstack com 5 anos de atuação prática em todas as fases do ciclo de desenvolvimento de software. Proficiente na construção de soluções escaláveis utilizando <strong>Java (Spring Boot)</strong> no backend e <strong>React</strong> no frontend. Experiência sólida em arquitetura de microsserviços, modelagem de dados (SQL) e infraestrutura em nuvem (<strong>AWS/Docker</strong>). Focado em código limpo, performance e entrega de valor em ambientes ágeis.</p>
+        <p class="lang-en">Fullstack Developer with 5 years of practical experience in all phases of the software development lifecycle. Proficient in building scalable solutions using <strong>Java (Spring Boot)</strong> on the backend and <strong>React</strong> on the frontend. Solid experience in microservices architecture, data modeling (SQL), and cloud infrastructure (<strong>AWS/Docker</strong>). Focused on clean code, performance, and delivering value in agile environments.</p>
     </div>
 
-    <h3>Habilidades Técnicas</h3>
+    <h3>
+        <span class="lang-pt">Habilidades Técnicas</span>
+        <span class="lang-en">Technical Skills</span>
+    </h3>
     <div class="section-content skills-grid">
         <div class="skill-item"><strong>Backend:</strong> Java 17+, Spring Boot (Security, Data, Web), Python (Django/Flask), Node.js, PHP, APIs RESTful.</div>
         <div class="skill-item"><strong>Frontend:</strong> React.js, Context API, Hooks, JavaScript (ES6+), HTML5, CSS3, SASS.</div>
-        <div class="skill-item"><strong>Banco de Dados:</strong> PostgreSQL, MySQL, Modelagem SQL, Otimização de Queries.</div>
-        <div class="skill-item"><strong>DevOps & Infra:</strong> Docker, AWS (EC2), CI/CD (GitHub Actions básico), Linux.</div>
-        <div class="skill-item"><strong>Ferramentas:</strong> Git/GitHub, Scrum, TDD, JUnit.</div>
+        <div class="skill-item">
+            <span class="lang-pt"><strong>Banco de Dados:</strong> PostgreSQL, MySQL, Modelagem SQL, Otimização de Queries.</span>
+            <span class="lang-en"><strong>Database:</strong> PostgreSQL, MySQL, SQL Modeling, Query Optimization.</span>
+        </div>
+        <div class="skill-item"><strong>DevOps & Infra:</strong> Docker, AWS (EC2), CI/CD (GitHub Actions), Linux.</div>
+        <div class="skill-item">
+            <span class="lang-pt"><strong>Ferramentas:</strong> Git/GitHub, Scrum, TDD, JUnit.</span>
+            <span class="lang-en"><strong>Tools & Methods:</strong> Git/GitHub, Scrum, TDD, JUnit.</span>
+        </div>
     </div>
 
-    <h3>Experiência Profissional</h3>
+    <h3>
+        <span class="lang-pt">Experiência Profissional</span>
+        <span class="lang-en">Professional Experience</span>
+    </h3>
     <div class="section-content">
         <div class="job-header">
-            <span>Desenvolvedor Fullstack (Freelancer)</span>
-            <span>Jan 2020 – Presente</span>
+            <span class="lang-pt">Desenvolvedor Fullstack (Freelancer)</span>
+            <span class="lang-en">Fullstack Developer (Freelance)</span>
+            <span>Jan 2020 – Present</span>
         </div>
-        <div class="job-subheader">Autônomo</div>
-        <ul>
+        <div class="job-subheader">
+            <span class="lang-pt">Autônomo</span>
+            <span class="lang-en">Self-employed</span>
+        </div>
+        <ul class="lang-pt">
             <li>Atuação no ciclo completo de desenvolvimento de aplicações web, utilizando principalmente <strong>Java (Spring Boot)</strong> e <strong>Python</strong>.</li>
             <li>Implementação e documentação de APIs RESTful, assegurando integração fluida entre frontend e backend.</li>
             <li>Modelagem e administração de bancos de dados relacionais (MySQL e PostgreSQL), com foco em integridade de dados e performance.</li>
             <li>Aplicação de práticas ágeis e uso de versionamento de código (Git) para entregas contínuas e organizadas.</li>
         </ul>
+        <ul class="lang-en">
+            <li>Working on the complete web application development lifecycle, primarily using <strong>Java (Spring Boot)</strong> and <strong>Python</strong>.</li>
+            <li>Implementation and documentation of RESTful APIs, ensuring fluid integration between frontend and backend.</li>
+            <li>Modeling and administration of relational databases (MySQL and PostgreSQL), focusing on data integrity and performance.</li>
+            <li>Application of agile practices and code versioning (Git) for continuous and organized delivery.</li>
+        </ul>
 
         <div class="job-header">
-            <span>Estagiário de TI e Suporte</span>
+            <span class="lang-pt">Estagiário de TI e Suporte</span>
+            <span class="lang-en">IT Support Intern</span>
             <span>2023 – 2024</span>
         </div>
         <div class="job-subheader">Holanda Assessoria Jurídica</div>
-        <ul>
+        <ul class="lang-pt">
             <li>Gerenciamento e configuração do sistema PJE (Processo Judicial Eletrônico), garantindo a continuidade das operações jurídicas.</li>
             <li>Suporte técnico nível 2 e manutenção preventiva do parque tecnológico da empresa, garantindo alta disponibilidade.</li>
         </ul>
+        <ul class="lang-en">
+            <li>Management and configuration of the PJE system (Electronic Judicial Process), ensuring continuity of legal operations.</li>
+            <li>Level 2 technical support and preventive maintenance of the company's technology infrastructure, ensuring high availability.</li>
+        </ul>
     </div>
 
-    <h3>Projetos de Destaque</h3>
+    <h3>
+        <span class="lang-pt">Projetos de Destaque</span>
+        <span class="lang-en">Featured Projects</span>
+    </h3>
     <div class="section-content">
         <div class="job-header">
-            <span>MedMais - Sistema de Gestão de Clínicas</span>
+            <span>MedMais - Clinic Management System</span>
         </div>
         <div class="job-subheader"><a href="https://medmais.otaviano.dev.br/" target="_blank">medmais.otaviano.dev.br</a></div>
-        <ul>
+        <ul class="lang-pt">
             <li><strong>Descrição:</strong> Plataforma Fullstack para gestão clínica completa (agendamento, prontuário, exames).</li>
             <li><strong>Destaque:</strong> Módulo de <strong>Telemedicina</strong> com geração dinâmica de links para videochamadas (integração Google Meet).</li>
             <li><strong>Tech Stack:</strong> Java, Spring Boot, Spring Security, React.js, PostgreSQL.</li>
             <li><strong>Infraestrutura:</strong> Aplicação containerizada com <strong>Docker</strong> e deploy realizado em instância <strong>AWS EC2</strong>.</li>
+        </ul>
+        <ul class="lang-en">
+            <li><strong>Description:</strong> Fullstack platform for complete clinical management (scheduling, medical records, exams).</li>
+            <li><strong>Highlight:</strong> **Telemedicine** module with dynamic video call link generation (Google Meet integration).</li>
+            <li><strong>Tech Stack:</strong> Java, Spring Boot, Spring Security, React.js, PostgreSQL.</li>
+            <li><strong>Infrastructure:</strong> Containerized application with **Docker** deployed on an **AWS EC2** instance.</li>
         </ul>
 
         <div class="job-header">
             <span>Cesta Solidária</span>
         </div>
         <div class="job-subheader"><a href="https://github.com/0t4v14n0/CestaSolidaria" target="_blank">github.com/0t4v14n0/CestaSolidaria</a></div>
-        <ul>
+        <ul class="lang-pt">
             <li><strong>Descrição:</strong> Sistema para gestão logística de doações e beneficiários, com foco em impacto social.</li>
+            <li><strong>Tech Stack:</strong> Java, Spring Boot, MySQL.</li>
+        </ul>
+        <ul class="lang-en">
+            <li><strong>Description:</strong> Logistics system for donation and beneficiary management, focusing on social impact.</li>
             <li><strong>Tech Stack:</strong> Java, Spring Boot, MySQL.</li>
         </ul>
     </div>
 
-    <h3>Formação Acadêmica</h3>
+    <h3>
+        <span class="lang-pt">Formação Acadêmica</span>
+        <span class="lang-en">Education</span>
+    </h3>
     <div class="section-content">
-        <ul>
+        <ul class="lang-pt">
             <li><strong>Análise e Desenvolvimento de Sistemas</strong> | Estácio (Conclusão prevista: 2026)</li>
             <li><strong>Oracle Next Education (ONE) - Backend</strong> | Alura (2024)</li>
             <li><strong>Informática para Internet</strong> | IFPE - Campus Belo Jardim (2021)</li>
         </ul>
+        <ul class="lang-en">
+            <li><strong>Analysis and Systems Development</strong> | Estácio (Expected completion: 2026)</li>
+            <li><strong>Oracle Next Education (ONE) - Backend</strong> | Alura (2024)</li>
+            <li><strong>Internet Informatics</strong> | IFPE - Campus Belo Jardim (2021)</li>
+        </ul>
     </div>
 
-    <h3>Idiomas</h3>
+    <h3>
+        <span class="lang-pt">Idiomas</span>
+        <span class="lang-en">Languages</span>
+    </h3>
     <div class="section-content">
-        <ul>
+        <ul class="lang-pt">
             <li><strong>Português:</strong> Nativo</li>
             <li><strong>Inglês:</strong> Avançado (Leitura técnica e conversação)</li>
             <li><strong>Espanhol:</strong> Intermediário</li>
         </ul>
+        <ul class="lang-en">
+            <li><strong>Portuguese:</strong> Native</li>
+            <li><strong>English:</strong> Advanced (Technical reading and conversation)</li>
+            <li><strong>Spanish:</strong> Intermediate</li>
+        </ul>
     </div>
+
+    <script>
+        function toggleLanguage() {
+            const ptElements = document.querySelectorAll('.lang-pt');
+            const enElements = document.querySelectorAll('.lang-en');
+            
+            // Verifica se o português está visível para decidir a troca
+            const isPtVisible = ptElements[0].style.display !== 'none';
+
+            if (isPtVisible) {
+                // Troca para Inglês
+                ptElements.forEach(el => el.style.display = 'none');
+                enElements.forEach(el => el.style.display = 'block'); // 'block' pode quebrar linhas inline, ajustar se precisar
+                
+                // Ajuste fino para elementos que são inline (como dentro de spans)
+                document.querySelectorAll('span.lang-en').forEach(el => el.style.display = 'inline');
+            } else {
+                // Troca para Português
+                ptElements.forEach(el => el.style.display = 'block'); // ou 'inline'
+                document.querySelectorAll('span.lang-pt').forEach(el => el.style.display = 'inline');
+                
+                enElements.forEach(el => el.style.display = 'none');
+            }
+        }
+    </script>
 
 </body>
 </html>
