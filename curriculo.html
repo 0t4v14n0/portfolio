@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo - Otaviano Cruz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #fff;
+        }
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .contact-info {
+            text-align: center;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+        }
+        .contact-info a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+        h3 {
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            text-transform: uppercase;
+            font-size: 1.1em;
+            color: #2c3e50;
+        }
+        .section-content {
+            margin-top: 10px;
+        }
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .job-subheader {
+            font-style: italic;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        ul {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 5px;
+        }
+        .skill-item strong {
+            color: #2c3e50;
+        }
+        @media print {
+            body { padding: 0; }
+            a { text-decoration: none; color: #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>OTAVIANO CRUZ GOUVEIA DE ARRUDA NETO</h1>
+    <div class="subtitle">Desenvolvedor Fullstack | Java, Spring Boot & React</div>
+    
+    <div class="contact-info">
+        Belo Jardim, PE | (81) 99333-5045<br>
+        <a href="mailto:0t4v14n0@gmail.com">0t4v14n0@gmail.com</a> | 
+        <a href="https://www.linkedin.com/in/otaviano-cruz/" target="_blank">LinkedIn</a> | 
+        <a href="https://0t4v14n0.github.io/portfolio/" target="_blank">Portfólio & GitHub</a>
+    </div>
+
+    <h3>Resumo Profissional</h3>
+    <div class="section-content">
+        <p>Desenvolvedor Fullstack com 5 anos de atuação prática em todas as fases do ciclo de desenvolvimento de software. Proficiente na construção de soluções escaláveis utilizando <strong>Java (Spring Boot)</strong> no backend e <strong>React</strong> no frontend. Experiência sólida em arquitetura de microsserviços, modelagem de dados (SQL) e infraestrutura em nuvem (<strong>AWS/Docker</strong>). Focado em código limpo, performance e entrega de valor em ambientes ágeis.</p>
+    </div>
+
+    <h3>Habilidades Técnicas</h3>
+    <div class="section-content skills-grid">
+        <div class="skill-item"><strong>Backend:</strong> Java 17+, Spring Boot (Security, Data, Web), Python (Django/Flask), Node.js, PHP, APIs RESTful.</div>
+        <div class="skill-item"><strong>Frontend:</strong> React.js, Context API, Hooks, JavaScript (ES6+), HTML5, CSS3, SASS.</div>
+        <div class="skill-item"><strong>Banco de Dados:</strong> PostgreSQL, MySQL, Modelagem SQL, Otimização de Queries.</div>
+        <div class="skill-item"><strong>DevOps & Infra:</strong> Docker, AWS (EC2), CI/CD (GitHub Actions básico), Linux.</div>
+        <div class="skill-item"><strong>Ferramentas:</strong> Git/GitHub, Scrum, TDD, JUnit.</div>
+    </div>
+
+    <h3>Experiência Profissional</h3>
+    <div class="section-content">
+        <div class="job-header">
+            <span>Desenvolvedor Fullstack (Freelancer)</span>
+            <span>Jan 2020 – Presente</span>
+        </div>
+        <div class="job-subheader">Autônomo</div>
+        <ul>
+            <li>Atuação no ciclo completo de desenvolvimento de aplicações web, utilizando principalmente <strong>Java (Spring Boot)</strong> e <strong>Python</strong>.</li>
+            <li>Implementação e documentação de APIs RESTful, assegurando integração fluida entre frontend e backend.</li>
+            <li>Modelagem e administração de bancos de dados relacionais (MySQL e PostgreSQL), com foco em integridade de dados e performance.</li>
+            <li>Aplicação de práticas ágeis e uso de versionamento de código (Git) para entregas contínuas e organizadas.</li>
+        </ul>
+
+        <div class="job-header">
+            <span>Estagiário de TI e Suporte</span>
+            <span>2023 – 2024</span>
+        </div>
+        <div class="job-subheader">Holanda Assessoria Jurídica</div>
+        <ul>
+            <li>Gerenciamento e configuração do sistema PJE (Processo Judicial Eletrônico), garantindo a continuidade das operações jurídicas.</li>
+            <li>Suporte técnico nível 2 e manutenção preventiva do parque tecnológico da empresa, garantindo alta disponibilidade.</li>
+        </ul>
+    </div>
+
+    <h3>Projetos de Destaque</h3>
+    <div class="section-content">
+        <div class="job-header">
+            <span>MedMais - Sistema de Gestão de Clínicas</span>
+        </div>
+        <div class="job-subheader"><a href="https://medmais.otaviano.dev.br/" target="_blank">medmais.otaviano.dev.br</a></div>
+        <ul>
+            <li><strong>Descrição:</strong> Plataforma Fullstack para gestão clínica completa (agendamento, prontuário, exames).</li>
+            <li><strong>Destaque:</strong> Módulo de <strong>Telemedicina</strong> com geração dinâmica de links para videochamadas (integração Google Meet).</li>
+            <li><strong>Tech Stack:</strong> Java, Spring Boot, Spring Security, React.js, PostgreSQL.</li>
+            <li><strong>Infraestrutura:</strong> Aplicação containerizada com <strong>Docker</strong> e deploy realizado em instância <strong>AWS EC2</strong>.</li>
+        </ul>
+
+        <div class="job-header">
+            <span>Cesta Solidária</span>
+        </div>
+        <div class="job-subheader"><a href="https://github.com/0t4v14n0/CestaSolidaria" target="_blank">github.com/0t4v14n0/CestaSolidaria</a></div>
+        <ul>
+            <li><strong>Descrição:</strong> Sistema para gestão logística de doações e beneficiários, com foco em impacto social.</li>
+            <li><strong>Tech Stack:</strong> Java, Spring Boot, MySQL.</li>
+        </ul>
+    </div>
+
+    <h3>Formação Acadêmica</h3>
+    <div class="section-content">
+        <ul>
+            <li><strong>Análise e Desenvolvimento de Sistemas</strong> | Estácio (Conclusão prevista: 2026)</li>
+            <li><strong>Oracle Next Education (ONE) - Backend</strong> | Alura (2024)</li>
+            <li><strong>Informática para Internet</strong> | IFPE - Campus Belo Jardim (2021)</li>
+        </ul>
+    </div>
+
+    <h3>Idiomas</h3>
+    <div class="section-content">
+        <ul>
+            <li><strong>Português:</strong> Nativo</li>
+            <li><strong>Inglês:</strong> Avançado (Leitura técnica e conversação)</li>
+            <li><strong>Espanhol:</strong> Intermediário</li>
+        </ul>
+    </div>
+
+</body>
+</html>
