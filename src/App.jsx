@@ -73,7 +73,7 @@ function App() {
           ))}
 
           <a 
-            href="/curriculo.html" 
+            href="/public/curriculo.html" 
             target="_blank" 
             className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800 hover:text-green-500 transition-all border border-zinc-800 mt-4 font-bold"
           >
