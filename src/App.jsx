@@ -112,9 +112,15 @@ function App() {
             <div className="space-y-6 text-lg lg:text-xl text-zinc-400 leading-relaxed text-justify">
               <p>
                 Olá, eu sou o <span className="text-white font-bold">Otaviano Cruz</span>, um entusiasta de programação de 25 anos. 
+                Acredito que na área da tecnologia é fundamental ter um conhecimento diversificado.
               </p>
               <p>
-                É por isso que atuo como <span className="text-green-500 font-mono font-bold">Desenvolvedor Full-Stack</span>, com foco especializado em <span className="text-green-500 font-mono font-bold">Backend</span>.
+                É por isso que atuo como <span className="text-green-500 font-mono font-bold">Desenvolvedor Full-Stack</span>, 
+                com foco especializado em <span className="text-green-500 font-mono font-bold">Backend</span>. Estou sempre em busca de 
+                aprender e aprimorar minhas habilidades para criar soluções robustas e eficientes.
+              </p>
+              <p>
+                Bem-vindo ao meu mundo digital, onde compartilho minhas experiências e projetos neste fascinante universo da programação.
               </p>
             </div>
           </section>
