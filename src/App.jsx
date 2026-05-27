@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import githubIcon from '../public/imagens/Github_icon-icons.com_66788.png';
+import linkedinIcon from '../public/imagens/174857.png';
 
 function App() {
   const [activeTab, setActiveTab] = useState('home');
@@ -73,6 +75,14 @@ function App() {
           ))}
 
           <a 
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdzZkldtyOhsTUd2YLOu2lQolvsMq_mADIexoZKd4Lwae4Ung/viewform?fbzx=4887057982778365258" 
+            target="_blank" 
+            className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800 hover:text-green-500 transition-all border border-zinc-800 mt-4 font-bold"
+          >
+            📝 GOOGLE FORMS
+          </a>
+
+          <a 
             href="/curriculo.html" 
             target="_blank" 
             className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800 hover:text-green-500 transition-all border border-zinc-800 mt-4 font-bold"
@@ -82,8 +92,33 @@ function App() {
         </nav>
 
         <div className="flex gap-6 pt-6 border-t border-zinc-800 w-full justify-center text-xs font-bold text-zinc-600">
-          <a href="https://github.com/0t4v14n0" target="_blank" className="hover:text-green-500">GITHUB</a>
-          <a href="https://linkedin.com/in/otaviano-cruz/" target="_blank" className="hover:text-green-500">LINKEDIN</a>
+          <a
+            href="https://github.com/0t4v14n0"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-2 hover:opacity-80 transition"
+          >
+            <img
+              src={githubIcon}
+              alt="GitHub"
+              className="w-6 h-6"
+            />
+            GITHUB
+          </a>
+
+          <a
+            href="https://linkedin.com/in/otaviano-cruz/"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-2 hover:opacity-80 transition"
+          >
+            <img
+              src={linkedinIcon}
+              alt="LinkedIn"
+              className="w-6 h-6"
+            />
+            LINKEDIN
+          </a>
         </div>
       </aside>
 
