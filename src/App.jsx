@@ -21,6 +21,7 @@ function App() {
     { name: "WhatsApp Gemini", link: "https://github.com/0t4v14n0/gemini-whatsapp-chatbot", tech: "Python / AI", img: "/imagens/gemini.png" },
     { name: "CineTrack API", link: "https://github.com/0t4v14n0/cinetrack-API", tech: "Java / Spring", img: "/imagens/cinetrack.png" },
     { name: "Decodificador", link: "https://0t4v14n0.github.io/Sprint-01-Construa-um-decodificador-de-texto-com-Javascript/", tech: "JS", img: "/imagens/cod.png" },
+    { name: "Decodificador", link: "https://routriz.otaviano.dev.br/", tech: "JS", img: "/imagens/Routriz.png" }
   ];
 
   const skills = [
