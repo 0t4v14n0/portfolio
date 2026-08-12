@@ -15,13 +15,13 @@ function App() {
   ];
 
   const projects = [
+    { name: "Routriz", link: "https://routriz.otaviano.dev.br/", tech: "JS", img: "/imagens/Routriz.png" },
     { name: "MedMais (Clínica)", link: "https://sua-clinica-passo-a-passo.vercel.app/", tech: "Spring Boot / React", img: "/imagens/suaClinica.png", featured: true },
     { name: "ForumHub", link: "https://github.com/0t4v14n0/Challenge-ForumHub", tech: "Java / Spring", img: "/imagens/Badge-Spring.png" },
     { name: "LiterAlura", link: "https://github.com/0t4v14n0/Challenge-LiterAlura", tech: "Java / API", img: "/imagens/literalura.png" },
     { name: "WhatsApp Gemini", link: "https://github.com/0t4v14n0/gemini-whatsapp-chatbot", tech: "Python / AI", img: "/imagens/gemini.png" },
     { name: "CineTrack API", link: "https://github.com/0t4v14n0/cinetrack-API", tech: "Java / Spring", img: "/imagens/cinetrack.png" },
     { name: "Decodificador", link: "https://0t4v14n0.github.io/Sprint-01-Construa-um-decodificador-de-texto-com-Javascript/", tech: "JS", img: "/imagens/cod.png" },
-    { name: "Decodificador", link: "https://routriz.otaviano.dev.br/", tech: "JS", img: "/imagens/Routriz.png" }
   ];
 
   const skills = [
