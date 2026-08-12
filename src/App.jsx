@@ -15,7 +15,7 @@ function App() {
   ];
 
   const projects = [
-    { name: "Routriz", link: "https://routriz.otaviano.dev.br/", tech: "JS", img: "/imagens/Routriz.png" },
+    { name: "Routriz", link: "https://routriz.otaviano.dev.br/", tech: "JS/JAVA/SpringBoot/PostgreSQL", img: "/imagens/Routriz.png", featured: true },
     { name: "MedMais (Clínica)", link: "https://sua-clinica-passo-a-passo.vercel.app/", tech: "Spring Boot / React", img: "/imagens/suaClinica.png", featured: true },
     { name: "ForumHub", link: "https://github.com/0t4v14n0/Challenge-ForumHub", tech: "Java / Spring", img: "/imagens/Badge-Spring.png" },
     { name: "LiterAlura", link: "https://github.com/0t4v14n0/Challenge-LiterAlura", tech: "Java / API", img: "/imagens/literalura.png" },
