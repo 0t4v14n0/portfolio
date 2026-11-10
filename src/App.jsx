@@ -1,242 +1,555 @@
-import React, { useState } from 'react';
-import githubIcon from '../public/imagens/Github_icon-icons.com_66788.png';
-import linkedinIcon from '../public/imagens/174857.png';
+import React, { useEffect, useState } from 'react';
 
-function App() {
-  const [activeTab, setActiveTab] = useState('home');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+/* ------------------------------------------------------------------ */
+/* DATA                                                               */
+/* ------------------------------------------------------------------ */
 
-  const menuItems = [
-    { id: 'home', label: 'HOME' },
-    { id: 'about', label: 'SOBRE' },
-    { id: 'services', label: 'SERVIÇOS' },
-    { id: 'skills', label: 'SKILLS' },
-    { id: 'projects', label: 'PROJETOS' },
-  ];
+const NAV = [
+  { id: 'home',     label: 'Início'   },
+  { id: 'about',    label: 'Sobre'    },
+  { id: 'projects', label: 'Projetos' },
+  { id: 'stack',    label: 'Stack'    },
+  { id: 'services', label: 'Serviços' },
+  { id: 'contact',  label: 'Contato'  },
+];
 
-  const projects = [
-    { name: "Routriz", link: "https://routriz.otaviano.dev.br/", tech: "JS/JAVA/SpringBoot/PostgreSQL", img: "/imagens/Routriz.png", featured: true },
-    { name: "MedMais (Clínica)", link: "https://sua-clinica-passo-a-passo.vercel.app/", tech: "Spring Boot / React", img: "/imagens/suaClinica.png", featured: true },
-    { name: "ForumHub", link: "https://github.com/0t4v14n0/Challenge-ForumHub", tech: "Java / Spring", img: "/imagens/Badge-Spring.png" },
-    { name: "LiterAlura", link: "https://github.com/0t4v14n0/Challenge-LiterAlura", tech: "Java / API", img: "/imagens/literalura.png" },
-    { name: "WhatsApp Gemini", link: "https://github.com/0t4v14n0/gemini-whatsapp-chatbot", tech: "Python / AI", img: "/imagens/gemini.png" },
-    { name: "CineTrack API", link: "https://github.com/0t4v14n0/cinetrack-API", tech: "Java / Spring", img: "/imagens/cinetrack.png" },
-    { name: "Decodificador", link: "https://0t4v14n0.github.io/Sprint-01-Construa-um-decodificador-de-texto-com-Javascript/", tech: "JS", img: "/imagens/cod.png" },
-  ];
+const PROJECTS = [
+  {
+    name: 'Routriz',
+    tagline: 'Plataforma de roteirização com autenticação multi-nível e dashboard administrativo.',
+    link: 'https://routriz.otaviano.dev.br/',
+    stack: ['Java', 'Spring Boot', 'PostgreSQL', 'JavaScript'],
+    img: '/imagens/Routriz.png',
+    featured: true,
+    year: '2024',
+  },
+  {
+    name: 'MedMais',
+    tagline: 'SaaS de gestão clínica com controle de acesso baseado em papéis (ACL).',
+    link: 'https://sua-clinica-passo-a-passo.vercel.app/',
+    stack: ['Spring Boot', 'React', 'PostgreSQL'],
+    img: '/imagens/suaClinica.png',
+    featured: true,
+    year: '2024',
+  },
+  {
+    name: 'ForumHub',
+    tagline: 'API REST de fórum com autenticação JWT.',
+    link: 'https://github.com/0t4v14n0/Challenge-ForumHub',
+    stack: ['Java', 'Spring'],
+    img: '/imagens/Badge-Spring.png',
+  },
+  {
+    name: 'LiterAlura',
+    tagline: 'Catálogo de livros consumindo API pública.',
+    link: 'https://github.com/0t4v14n0/Challenge-LiterAlura',
+    stack: ['Java', 'API'],
+    img: '/imagens/literalura.png',
+  },
+  {
+    name: 'WhatsApp Gemini',
+    tagline: 'Chatbot com IA generativa para WhatsApp.',
+    link: 'https://github.com/0t4v14n0/gemini-whatsapp-chatbot',
+    stack: ['Python', 'AI'],
+    img: '/imagens/gemini.png',
+  },
+  {
+    name: 'CineTrack API',
+    tagline: 'API de catálogo e tracking de filmes.',
+    link: 'https://github.com/0t4v14n0/cinetrack-API',
+    stack: ['Java', 'Spring'],
+    img: '/imagens/cinetrack.png',
+  },
+  {
+    name: 'Decodificador',
+    tagline: 'Decodificador de texto em JavaScript puro.',
+    link: 'https://0t4v14n0.github.io/Sprint-01-Construa-um-decodificador-de-texto-com-Javascript/',
+    stack: ['JavaScript', 'HTML/CSS'],
+    img: '/imagens/cod.png',
+  },
+];
 
-  const skills = [
-    { name: "JAVA", level: "97%" },
-    { name: "PYTHON", level: "88%" },
-    { name: "JAVASCRIPT", level: "80%" },
-    { name: "HTML/CSS", level: "80%" },
-    { name: "PHP", level: "77%" },
-  ];
+const STACK = [
+  { group: 'Backend',    items: ['Java', 'Spring Boot', 'Spring Security', 'JPA / Hibernate', 'PostgreSQL', 'PHP'] },
+  { group: 'Frontend',   items: ['React', 'JavaScript', 'HTML', 'CSS', 'Tailwind'] },
+  { group: 'Ferramentas', items: ['Git', 'Docker', 'Maven', 'Python'] },
+];
+
+const SERVICES = [
+  {
+    title: 'Sistemas SaaS',
+    desc: 'Do modelo de dados à interface. Estruturo produtos com autenticação, permissões e painéis administrativos.',
+  },
+  {
+    title: 'APIs & Integrações',
+    desc: 'APIs REST bem modeladas, documentadas e prontas para escalar — integrando com serviços externos quando necessário.',
+  },
+  {
+    title: 'Consultoria Backend',
+    desc: 'Revisão de arquitetura, modelagem de domínio e boas práticas em projetos Java/Spring existentes.',
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/* HOOKS                                                              */
+/* ------------------------------------------------------------------ */
+
+function useTheme() {
+  const [theme, setTheme] = useState(
+    () => (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) || 'dark'
+  );
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+  return [theme, setTheme];
+}
+
+function useActiveSection(ids) {
+  const [active, setActive] = useState(ids[0]);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); });
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+    return () => obs.disconnect();
+  }, [ids]);
+  return active;
+}
+
+/* ------------------------------------------------------------------ */
+/* APP                                                                */
+/* ------------------------------------------------------------------ */
+
+export default function App() {
+  const [theme, setTheme] = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const active = useActiveSection(NAV.map((n) => n.id));
+
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMenuOpen(false);
+  };
 
   return (
-    <div className="flex h-screen bg-[#0a0a0a] text-zinc-100 font-sans overflow-hidden relative flex-col lg:flex-row">
-      
-      {/* HEADER MOBILE (Aparece apenas em telas pequenas) */}
-      <header className="lg:hidden flex items-center justify-between p-4 bg-[#0f0f0f] border-b border-zinc-800 z-50">
-        <img src="/imagens/0T4.png" alt="Logo" className="h-10 drop-shadow-[0_0_5px_rgba(34,197,94,0.3)]" />
-        
-        <button 
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="p-3 bg-green-600 rounded-xl text-black shadow-lg"
-        >
-          <div className="w-6 h-5 flex flex-col justify-between">
-            <div className={`h-1 w-full bg-black transition-all ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
-            <div className={`h-1 w-full bg-black transition-all ${isMenuOpen ? 'opacity-0' : ''}`}></div>
-            <div className={`h-1 w-full bg-black transition-all ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
-          </div>
-        </button>
-      </header>
+    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
 
-      {/* SIDEBAR (Desktop e Overlay Mobile) */}
-      <aside className={`
-        fixed lg:static inset-0 z-40 w-72 bg-[#0f0f0f] border-r border-zinc-800 flex flex-col items-center py-10 px-6 shrink-0 transition-transform duration-300
-        ${isMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-      `}>
-        <div className="mb-10 hidden lg:block">
-          <img src="/imagens/0T4.png" alt="Logo" className="w-40 drop-shadow-[0_0_10px_rgba(34,197,94,0.3)]" />
-        </div>
-        
-        <nav className="flex flex-col w-full gap-2 flex-1 mt-16 lg:mt-0">
-          {menuItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => { setActiveTab(item.id); setIsMenuOpen(false); }}
-              className={`text-left px-5 py-3 rounded-xl transition-all font-bold ${
-                activeTab === item.id 
-                ? 'bg-green-600 text-black shadow-lg shadow-green-500/20' 
-                : 'hover:bg-zinc-800 text-zinc-400'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
+      {/* ============================== NAV ============================== */}
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-[var(--bg)]/80 border-b border-[var(--border)]">
+        <div className="max-w-6xl mx-auto px-5 lg:px-8 h-16 flex items-center justify-between">
+          <button onClick={() => scrollTo('home')} className="flex items-center gap-2">
+            <img src="/imagens/0T4.png" alt="0t4" className="h-8 w-auto" />
+            <span className="font-mono text-xs text-[var(--muted)] hidden sm:inline">otaviano.dev</span>
+          </button>
 
-          <a 
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdzZkldtyOhsTUd2YLOu2lQolvsMq_mADIexoZKd4Lwae4Ung/viewform?fbzx=4887057982778365258" 
-            target="_blank" 
-            className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800 hover:text-green-500 transition-all border border-zinc-800 mt-4 font-bold"
-          >
-            📝 GOOGLE FORMS
-          </a>
-
-          <a 
-            href="/curriculo.html" 
-            target="_blank" 
-            className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800 hover:text-green-500 transition-all border border-zinc-800 mt-4 font-bold"
-          >
-            📄 CURRÍCULO
-          </a>
-        </nav>
-
-        <div className="flex gap-6 pt-6 border-t border-zinc-800 w-full justify-center text-xs font-bold text-zinc-600">
-          <a
-            href="https://github.com/0t4v14n0"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 hover:opacity-80 transition"
-          >
-            <img
-              src={githubIcon}
-              alt="GitHub"
-              className="w-6 h-6"
-            />
-            GITHUB
-          </a>
-
-          <a
-            href="https://linkedin.com/in/otaviano-cruz/"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 hover:opacity-80 transition"
-          >
-            <img
-              src={linkedinIcon}
-              alt="LinkedIn"
-              className="w-6 h-6"
-            />
-            LINKEDIN
-          </a>
-        </div>
-      </aside>
-
-      {/* ÁREA PRINCIPAL */}
-      <main className="flex-1 overflow-y-auto p-6 lg:p-12">
-        
-        {/* HOME */}
-        {activeTab === 'home' && (
-          <div className="h-full flex flex-col items-center justify-center text-center">
-             <div className="mb-8">
-                <img src="/imagens/codehome.png" alt="Home" className="w-64 lg:w-96 drop-shadow-2xl" />
-             </div>
-             <h1 className="text-4xl lg:text-6xl font-black text-white mb-2">
-                FULLSTACK <span className="text-green-500">DEVELOPER</span>
-             </h1>
-             <p className="text-zinc-500 font-mono tracking-widest text-xs lg:text-sm">
-                Java Specialist • Backend Focused
-             </p>
-          </div>
-        )}
-
-        {/* SOBRE */}
-        {activeTab === 'about' && (
-          <section className="max-w-3xl animate-in slide-in-from-bottom-4 duration-500">
-            <h1 className="text-4xl lg:text-5xl font-black mb-8 text-green-500 uppercase italic">Sobre_</h1>
-            <div className="space-y-6 text-lg lg:text-xl text-zinc-400 leading-relaxed text-justify">
-              <p>
-                Olá, eu sou o <span className="text-white font-bold">Otaviano Cruz</span>, um entusiasta de programação de 25 anos. 
-                Acredito que na área da tecnologia é fundamental ter um conhecimento diversificado.
-              </p>
-              <p>
-                É por isso que atuo como <span className="text-green-500 font-mono font-bold">Desenvolvedor Full-Stack</span>, 
-                com foco especializado em <span className="text-green-500 font-mono font-bold">Backend</span>. Estou sempre em busca de 
-                aprender e aprimorar minhas habilidades para criar soluções robustas e eficientes.
-              </p>
-              <p>
-                Bem-vindo ao meu mundo digital, onde compartilho minhas experiências e projetos neste fascinante universo da programação.
-              </p>
-            </div>
-          </section>
-        )}
-
-        {/* SERVIÇOS */}
-        {activeTab === 'services' && (
-          <section className="max-w-4xl">
-            <h1 className="text-4xl lg:text-5xl font-black mb-10 text-green-500 uppercase italic">Serviços_</h1>
-            <div className="bg-zinc-900 p-8 rounded-3xl border border-green-500/30 mb-8">
-              <h2 className="text-2xl font-bold text-white mb-4 italic underline decoration-green-500">Sistemas SaaS</h2>
-              <p className="text-zinc-400 mb-6 leading-relaxed">
-                Especialista em criar ecossistemas complexos com múltiplos níveis de acesso (ACL).
-              </p>
-              <a 
-                href="https://sua-clinica-passo-a-passo.vercel.app/" 
-                target="_blank" 
-                className="inline-flex items-center gap-2 bg-green-600 text-black px-6 py-3 rounded-xl font-black hover:bg-green-400 transition-all"
+          <nav className="hidden md:flex items-center gap-1">
+            {NAV.map((n) => (
+              <button
+                key={n.id}
+                onClick={() => scrollTo(n.id)}
+                className={`px-3 py-2 text-sm rounded-md transition-colors ${
+                  active === n.id
+                    ? 'text-[var(--accent)]'
+                    : 'text-[var(--muted)] hover:text-[var(--text)]'
+                }`}
               >
-                VER DEMONSTRAÇÃO →
-              </a>
-            </div>
-          </section>
-        )}
+                {n.label}
+              </button>
+            ))}
+          </nav>
 
-        {/* SKILLS */}
-        {activeTab === 'skills' && (
-          <section className="max-w-2xl">
-            <h1 className="text-5xl font-black mb-12 text-green-500 uppercase italic">Skills_</h1>
-            <div className="space-y-8">
-              {skills.map(skill => (
-                <div key={skill.name}>
-                  <div className="flex justify-between mb-2">
-                    <span className="font-mono text-zinc-300">{skill.name}</span>
-                    <span className="text-green-500 font-black">{skill.level}</span>
-                  </div>
-                  <div className="h-2 w-full bg-zinc-800 rounded-full overflow-hidden">
-                    <div className="h-full bg-green-600" style={{ width: skill.level }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              aria-label="Alternar tema"
+              className="p-2 rounded-md border border-[var(--border)] text-[var(--muted)] hover:text-[var(--text)] transition-colors"
+            >
+              {theme === 'dark' ? '☀' : '☾'}
+            </button>
+            <a
+              href="/curriculo.html"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden sm:inline-flex items-center px-4 py-2 rounded-md bg-[var(--accent)] text-black text-sm font-semibold hover:opacity-90 transition-opacity"
+            >
+              Currículo
+            </a>
+            <button
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label="Menu"
+              className="md:hidden p-2 rounded-md border border-[var(--border)]"
+            >
+              <span className="block w-5 h-px bg-current mb-1" />
+              <span className="block w-5 h-px bg-current mb-1" />
+              <span className="block w-5 h-px bg-current" />
+            </button>
+          </div>
+        </div>
 
-        {/* PROJETOS */}
-        {activeTab === 'projects' && (
-          <section>
-            <h1 className="text-4xl lg:text-5xl font-black mb-10 text-green-500 uppercase italic">Projetos_</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {projects.map((p, i) => (
-                <a 
-                  key={i} 
-                  href={p.link} 
-                  target="_blank" 
-                  className={`group bg-zinc-900 border rounded-2xl overflow-hidden transition-all ${
-                    p.featured ? 'border-green-500 shadow-[0_0_15px_rgba(34,197,94,0.2)]' : 'border-zinc-800 hover:border-green-500/50'
+        {menuOpen && (
+          <div className="md:hidden border-t border-[var(--border)] bg-[var(--bg)]">
+            <div className="max-w-6xl mx-auto px-5 py-3 flex flex-col">
+              {NAV.map((n) => (
+                <button
+                  key={n.id}
+                  onClick={() => scrollTo(n.id)}
+                  className={`text-left py-2 text-sm ${
+                    active === n.id ? 'text-[var(--accent)]' : 'text-[var(--muted)]'
                   }`}
                 >
-                  <div className="h-40 bg-black flex items-center justify-center p-4 relative">
-                    {p.featured && (
-                      <span className="absolute top-2 right-2 bg-green-600 text-black text-[9px] font-black px-2 py-1 rounded">
-                        SHOWCASE COMPLETO
-                      </span>
-                    )}
-                    <img src={p.img} alt={p.name} className="max-h-full object-contain group-hover:scale-105 transition-transform" />
-                  </div>
-                  <div className="p-5 border-t border-zinc-800">
-                    <p className="text-[10px] text-green-500 font-mono mb-1 uppercase font-bold">{p.tech}</p>
-                    <h3 className="text-lg font-bold">{p.name}</h3>
-                  </div>
-                </a>
+                  {n.label}
+                </button>
               ))}
             </div>
-          </section>
+          </div>
         )}
+      </header>
 
-      </main>
+      {/* ============================== HERO ============================== */}
+      <section id="home" className="relative overflow-hidden scroll-mt-16">
+        <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
+        
+        {/* MUDANÇA AQUI: Layout em coluna no mobile e grid no desktop. A imagem agora tem 'order-first' no mobile */}
+        <div className="relative max-w-6xl mx-auto px-5 lg:px-8 pt-10 lg:pt-32 pb-16 lg:pb-32 flex flex-col-reverse lg:grid lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-12 items-center">
+          
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)] mb-6">
+              // Desenvolvedor Fullstack
+            </p>
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.05] mb-6">
+              Otaviano Cruz.
+              <br />
+              <span className="italic text-[var(--muted)]">Backend com propósito.</span>
+            </h1>
+            <p className="text-base lg:text-lg text-[var(--muted)] max-w-xl leading-relaxed mb-10">
+              Construo sistemas e APIs em <span className="text-[var(--text)]">Java & Spring</span>,
+              com interfaces em <span className="text-[var(--text)]">React</span> quando o projeto pede.
+              Foco em código legível, arquitetura clara e produtos que escalam.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <button
+                onClick={() => scrollTo('projects')}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-[var(--accent)] text-black font-semibold hover:opacity-90 transition-opacity"
+              >
+                Ver projetos →
+              </button>
+              <button
+                onClick={() => scrollTo('contact')}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-md border border-[var(--border-strong)] font-semibold hover:bg-[var(--surface)] transition-colors"
+              >
+                Fale comigo
+              </button>
+            </div>
+          </div>
+
+          {/* Imagem com Animação e Visibilidade no Mobile */}
+          <div className="relative w-full max-w-md mx-auto block animate-float">
+            <div className="absolute -inset-8 bg-[var(--accent-soft)] blur-3xl rounded-full" />
+            <img
+              src="/imagens/codehome.png"
+              alt="Ilustração de código"
+              className="relative w-full mx-auto drop-shadow-xl"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ============================== ABOUT ============================== */}
+      <section id="about" className="border-t border-[var(--border)] scroll-mt-16">
+        <div className="max-w-6xl mx-auto px-5 lg:px-8 py-24 grid lg:grid-cols-[1fr_360px] gap-16">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)] mb-4">
+              01 — Sobre
+            </p>
+            <h2 className="font-display text-4xl lg:text-5xl leading-tight mb-8">
+              Curioso por padrões, obcecado por detalhes.
+            </h2>
+            <div className="space-y-5 text-[var(--muted)] leading-relaxed text-base lg:text-[17px]">
+              <p>
+                Sou <span className="text-[var(--text)] font-medium">Otaviano Cruz</span>, desenvolvedor
+                fullstack com foco em backend. Acredito que um bom sistema começa pelo domínio bem
+                modelado e por decisões técnicas que sobrevivem ao tempo.
+              </p>
+              <p>
+                Meu dia a dia é Java + Spring Boot — autenticação, APIs REST, integrações e bancos
+                relacionais. Quando o projeto exige, também construo as interfaces em React, sempre
+                cuidando para que a experiência do usuário reflita a qualidade do backend.
+              </p>
+              <p>
+                Estou em constante estudo e aberto a colaborações. Se você tem um problema
+                interessante, me chama.
+              </p>
+            </div>
+          </div>
+
+          <aside className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-6 h-fit">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-5">
+              At a glance
+            </p>
+            <ul className="space-y-4 text-sm">
+              {[
+                ['Status',  'Disponível para projetos'],
+                ['Local',   'Brasil · Remoto'],
+                ['Foco',    'Backend / Fullstack'],
+                ['Stack',   'Java · Spring · React'],
+              ].map(([k, v]) => (
+                <li key={k} className="flex justify-between gap-4">
+                  <span className="text-[var(--muted)]">{k}</span>
+                  <span className="text-[var(--text)] text-right">{v}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6 pt-6 border-t border-[var(--border)] flex gap-2">
+              <a
+                href="https://github.com/0t4v14n0"
+                target="_blank"
+                rel="noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-[var(--surface-2)] hover:bg-[var(--border)] text-xs font-mono transition-colors"
+              >
+                <img src="/imagens/Github_icon-icons.com_66788.png" alt="" className="w-4 h-4 object-contain" />
+                GitHub
+              </a>
+              <a
+                href="https://linkedin.com/in/otaviano-cruz/"
+                target="_blank"
+                rel="noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-md bg-[var(--surface-2)] hover:bg-[var(--border)] text-xs font-mono transition-colors"
+              >
+                <img src="/imagens/174857.png" alt="" className="w-4 h-4 object-contain" />
+                LinkedIn
+              </a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      {/* ============================== PROJECTS ============================== */}
+      <section id="projects" className="border-t border-[var(--border)] scroll-mt-16">
+        <div className="max-w-6xl mx-auto px-5 lg:px-8 py-24">
+          <header className="mb-12 flex items-end justify-between flex-wrap gap-4">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)] mb-3">
+                02 — Projetos
+              </p>
+              <h2 className="font-display text-4xl lg:text-5xl leading-tight">
+                Trabalhos selecionados.
+              </h2>
+            </div>
+            <p className="text-sm text-[var(--muted)] max-w-xs">
+              Um recorte do que já coloquei no ar — do SaaS ao side project.
+            </p>
+          </header>
+
+          {/* Destaques */}
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            {PROJECTS.filter((p) => p.featured).map((p) => (
+              <a
+                key={p.name}
+                href={p.link}
+                target="_blank"
+                rel="noreferrer"
+                className="group bg-[var(--surface)] border border-[var(--border)] hover:border-[var(--accent)] rounded-2xl overflow-hidden transition-colors"
+              >
+                <div className="aspect-[16/9] bg-[var(--surface-2)] flex items-center justify-center p-8 overflow-hidden">
+                  <img
+                    src={p.img}
+                    alt={p.name}
+                    className="max-h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center gap-2 mb-3 text-xs font-mono text-[var(--muted)]">
+                    <span className="text-[var(--accent)]">●</span>
+                    <span>{p.year}</span>
+                    <span>·</span>
+                    <span>Destaque</span>
+                  </div>
+                  <h3 className="text-2xl font-semibold mb-2">{p.name}</h3>
+                  <p className="text-[var(--muted)] text-sm mb-5 leading-relaxed">{p.tagline}</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {p.stack.map((s) => (
+                      <span
+                        key={s}
+                        className="font-mono text-[11px] px-2 py-1 rounded bg-[var(--surface-2)] text-[var(--muted)]"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          {/* Outros */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {PROJECTS.filter((p) => !p.featured).map((p) => (
+              <a
+                key={p.name}
+                href={p.link}
+                target="_blank"
+                rel="noreferrer"
+                className="group bg-[var(--surface)] border border-[var(--border)] hover:border-[var(--border-strong)] rounded-xl overflow-hidden transition-colors"
+              >
+                <div className="aspect-[16/10] bg-[var(--surface-2)] flex items-center justify-center p-6 overflow-hidden">
+                  <img
+                    src={p.img}
+                    alt={p.name}
+                    className="max-h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="font-semibold mb-1">{p.name}</h3>
+                  <p className="text-xs text-[var(--muted)] mb-4 leading-relaxed">{p.tagline}</p>
+                  <div className="flex flex-wrap gap-1">
+                    {p.stack.map((s) => (
+                      <span
+                        key={s}
+                        className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-[var(--surface-2)] text-[var(--muted)]"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================== STACK ============================== */}
+      <section id="stack" className="border-t border-[var(--border)] scroll-mt-16">
+        <div className="max-w-6xl mx-auto px-5 lg:px-8 py-24">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)] mb-3">
+            03 — Stack
+          </p>
+          <h2 className="font-display text-4xl lg:text-5xl leading-tight mb-12">
+            O que eu uso no dia a dia.
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {STACK.map((g) => (
+              <div
+                key={g.group}
+                className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-6"
+              >
+                <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-5">
+                  {g.group}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {g.items.map((item) => (
+                    <span
+                      key={item}
+                      className="px-3 py-1.5 rounded-md bg-[var(--surface-2)] border border-[var(--border)] text-sm"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================== SERVICES ============================== */}
+      <section id="services" className="border-t border-[var(--border)] scroll-mt-16">
+        <div className="max-w-6xl mx-auto px-5 lg:px-8 py-24">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)] mb-3">
+            04 — Serviços
+          </p>
+          <h2 className="font-display text-4xl lg:text-5xl leading-tight mb-12">
+            Como posso ajudar.
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {SERVICES.map((s, i) => (
+              <div
+                key={s.title}
+                className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-6 flex flex-col"
+              >
+                <span className="font-mono text-xs text-[var(--muted)] mb-6">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className="text-xl font-semibold mb-3">{s.title}</h3>
+                <p className="text-sm text-[var(--muted)] leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-wrap gap-3">
+            <a
+              href="https://sua-clinica-passo-a-passo.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-[var(--surface)] border border-[var(--border)] text-sm font-medium hover:border-[var(--accent)] transition-colors"
+            >
+              Ver demo de SaaS →
+            </a>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdzZkldtyOhsTUd2YLOu2lQolvsMq_mADIexoZKd4Lwae4Ung/viewform?fbzx=4887057982778365258"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-[var(--surface)] border border-[var(--border)] text-sm font-medium hover:border-[var(--accent)] transition-colors"
+            >
+              Formulário de contato →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================== CONTACT ============================== */}
+      <section id="contact" className="border-t border-[var(--border)] scroll-mt-16">
+        <div className="max-w-6xl mx-auto px-5 lg:px-8 py-24">
+          <div className="grid lg:grid-cols-[1.4fr_1fr] gap-12 items-end">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)] mb-3">
+                05 — Contato
+              </p>
+              <h2 className="font-display text-5xl lg:text-6xl leading-[1.05]">
+                Vamos construir
+                <br />
+                <span className="italic text-[var(--muted)]">algo juntos.</span>
+              </h2>
+            </div>
+            <div className="flex flex-col gap-3">
+              <a
+                href="mailto:contato@otaviano.dev.br"
+                className="flex items-center justify-between px-5 py-4 rounded-md bg-[var(--accent)] text-black font-semibold hover:opacity-90 transition-opacity"
+              >
+                <span>Enviar e-mail</span>
+                <span>→</span>
+              </a>
+              <a
+                href="/curriculo.html"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-between px-5 py-4 rounded-md border border-[var(--border-strong)] hover:bg-[var(--surface)] transition-colors"
+              >
+                <span>Baixar currículo</span>
+                <span className="text-[var(--muted)]">↓</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <footer className="border-t border-[var(--border)]">
+          <div className="max-w-6xl mx-auto px-5 lg:px-8 py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[var(--muted)] font-mono">
+            <span>© {new Date().getFullYear()} Otaviano Cruz</span>
+            <div className="flex gap-4">
+              <a href="https://github.com/0t4v14n0" target="_blank" rel="noreferrer" className="hover:text-[var(--text)]">GitHub</a>
+              <a href="https://linkedin.com/in/otaviano-cruz/" target="_blank" rel="noreferrer" className="hover:text-[var(--text)]">LinkedIn</a>
+            </div>
+          </div>
+        </footer>
+      </section>
     </div>
   );
 }
-
-export default App;
