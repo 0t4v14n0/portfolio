@@ -32,6 +32,15 @@ const PROJECTS = [
     featured: true,
     year: '2025',
   },
+  {
+    name: 'CertIFY',
+    tagline: 'Automatize a criação de certificados em lote a partir de uma planilha.',
+    link: 'https://certify.otaviano.dev.br/',
+    stack: ['Python', 'Tkinter + ttkbootstrap', 'Pillow (PIL)', 'Pandas / openpyxl:'],
+    img: '/imagens/CertificadoApp.png',
+    featured: true,
+    year: '2026',
+  },
     {
     name: 'Bingo da Paróquia',
     tagline: 'Entregar um sistema sob medida que resolve a gestão do evento, impulsiona a arrecadação da igreja e permite que pessoas de qualquer lugar participem do bingo com total transparência.',
